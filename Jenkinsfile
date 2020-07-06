@@ -10,6 +10,8 @@ pipeline {
    }
 
    stages {
+
+/*
       stage('Checkout') {
          steps {
             // Get some code from a GitHub repository
@@ -17,6 +19,8 @@ pipeline {
         
          }
       }
+
+*/
       
       stage('Static-Code Analysis') {
             steps {
@@ -83,6 +87,11 @@ pipeline {
                             sh "./node_modules/.bin/cucumber-js my-apigee-api/test/integration/features/petstore.feature  -f json:my-apigee-api/test/integration/reports/cucumber_report.json "
                             
                         } catch (e) {
+				
+	           //for any error or test case failure need to revert the current revision
+                         
+			 sh undeploy.sh
+
                             throw e
                         } finally {
                             echo 'finally steps to publish report'
