@@ -1,0 +1,31 @@
+{
+  "name": "edge-proxies-master-62807235dbdbbf3ec98add6378a396a1f027d185",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apickli": "latest",
+    "sinon": "^9.0.2"
+  },
+  "devDependencies": {
+    "cucumber": "^5.1.0",
+    "cucumber-html-reporter": "^5",
+    "eslint": "^6",
+    "eslint-config-google": "^0",
+    "gulp": "^4",
+    "fs-extra": "^8",
+    "argv": "^0",
+    "gulp-cucumber": "^0",
+    "gulp-eslint": "^6",
+    "gulp4-run-sequence": "^0",
+    "mocha": "^8.0.1"
+  }
+}

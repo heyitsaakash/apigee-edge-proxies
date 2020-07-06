@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ResponseCache async="false" continueOnError="false" enabled="true" name="cache">
+  <DisplayName>cache</DisplayName>
+  <Properties/>
+  <CacheKey>
+    <Prefix/>
+    <KeyFragment ref="request.uri" type="string">hello-cache</KeyFragment>
+  </CacheKey>
+  <Scope>Exclusive</Scope>
+  <ExpirySettings>
+    <ExpiryDate/>
+    <TimeOfDay/>
+    <TimeoutInSec>60</TimeoutInSec>
+  </ExpirySettings>
+  <SkipCacheLookup/>
+  <SkipCachePopulation/>
+</ResponseCache>
