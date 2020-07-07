@@ -25,6 +25,6 @@ Scenario: Add New Pet POST request - Success 200 OK
   Scenario: Pet By ID GET request - Invalid 404 Not Found
     Given I set Content-type header to application/json
     When I GET /v2/pet/56561	
-    Then response code should be 404
+    Then response code should be 400
     And response body path $.message should be Pet not found
     
