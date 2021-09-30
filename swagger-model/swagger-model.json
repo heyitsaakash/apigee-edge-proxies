@@ -1,0 +1,277 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Product Search and Availibity API",
+    "version": "1.0.0",
+    "title": "Swagger Product API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "dna-adc@hcl.com"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "35.167.56.194:8080",
+  "basePath": "/v2",
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/product/search/{id}": {
+      "get": {
+        "tags": [
+          "product search"
+        ],
+        "summary": "search the product details",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "The id that needs to be fetched.",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ProductDetails"
+            }
+          },
+          "400": {
+            "description": "Invalid product id supplied"
+          },
+          "404": {
+            "description": "Product not found."
+          }
+        }
+      }
+    },
+    "/product/availability": {
+      "get": {
+        "tags": [
+          "product availablilty"
+        ],
+        "summary": "search the product availability based on zip code",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Search product details by zip code",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AvailabilityDetails"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ProductInventory"
+              }
+            }
+          },
+          "400": {
+            "description": "Invaild product id provided"
+          },
+          "404": {
+            "description": "Product not Found"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "ProductDetails": {
+      "type": "object",
+      "properties": {
+        "productid": {
+          "type": "integer",
+          "format": "int64",
+          "example": 9341
+        },
+        "name": {
+          "type": "string",
+          "example": "Coil Office Chair"
+        },
+        "description": {
+          "type": "string",
+          "example": "Coid Office chair with breathable mesh design and easy assemble kit."
+        },
+        "images": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "url"
+          }
+        },
+        "spec": {
+          "$ref": "#/definitions/ProductSpecification"
+        },
+        "reviews": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Review"
+          }
+        }
+      }
+    },
+    "ProductSpecification": {
+      "type": "object",
+      "properties": {
+        "height": {
+          "type": "number",
+          "format": "float64",
+          "example": 9
+        },
+        "width": {
+          "type": "number",
+          "format": "float64",
+          "example": 11
+        },
+        "length": {
+          "type": "number",
+          "format": "float",
+          "example": 17
+        }
+      }
+    },
+    "Review": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "type": "string",
+          "example": "julio"
+        },
+        "rating": {
+          "type": "integer",
+          "enum": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "example": 5
+        },
+        "heading": {
+          "type": "string",
+          "example": "Excellent Product"
+        },
+        "description": {
+          "type": "string",
+          "example": "I was able to assemble the product with no issues and it is very comfortable to use. All things were as advertized."
+        }
+      }
+    },
+    "AvailabilityDetails": {
+      "type": "object",
+      "properties": {
+        "productid": {
+          "type": "integer",
+          "format": "int64",
+          "example": 31219
+        },
+        "zipcode": {
+          "type": "string",
+          "example": 201304
+        },
+        "quantity": {
+          "type": "integer",
+          "format": "int64",
+          "example": 2
+        },
+        "deliverymethod": {
+          "type": "string",
+          "enum": [
+            "pickup",
+            "home"
+          ]
+        }
+      }
+    },
+    "ProductInventory": {
+      "type": "object",
+      "properties": {
+        "productid": {
+          "type": "integer",
+          "format": "int64",
+          "example": "iPhone 12"
+        },
+        "description": {
+          "type": "string",
+          "example": "iPhone 12 64GB - Blue"
+        },
+        "image": {
+          "type": "string",
+          "format": "url"
+        },
+        "avaialble_inventory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AvailableInventory"
+          },
+          "example": [
+            {
+              "availability": true,
+              "quantity_available": 4,
+              "zipcode": 201301
+            },
+            {
+              "availability": true,
+              "quanitity_available": 5,
+              "zipcode": 201302
+            },
+            {
+              "availability": false,
+              "quanitity_available": 1,
+              "zipcode": 201304
+            }
+          ]
+        }
+      }
+    },
+    "AvailableInventory": {
+      "type": "object",
+      "properties": {
+        "availability": {
+          "type": "boolean",
+          "example": true
+        },
+        "zipcode": {
+          "type": "integer",
+          "format": "int64",
+          "example": 201301
+        },
+        "quantity_available": {
+          "type": "integer",
+          "format": "int64",
+          "example": 10
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  }
+}

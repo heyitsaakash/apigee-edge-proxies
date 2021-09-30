@@ -1,0 +1,67 @@
+##### Variables
+#For Kubernetes Artifacts ( Top to Bottom )
+#1. {app}-ingress.yaml
+#2. {app}-service.yaml
+#3. {app}-deployment.yaml
+#4. {app}-registry-secrets.yaml
+#5. {app}-db-secrets.yaml
+#6. {app}-configmap.yaml
+#7. {app}-namespace.yaml
+
+#Placeholder for application name 
+app-name :
+
+#Placeholder for auth token to create secret for private docker repository
+#auth-token :
+
+#Placeholder for mysql user to be used in application
+mysql-user :
+
+#Placeholder for mysql password to be used in application
+mysql-password :
+
+#Placeholder for spring active profile for deployment
+spring-active-profile :
+
+#Placeholder for mysql db url to be used in application
+mysql-db-url :
+
+#Placeholder for No. of replicas of the pod
+replicas :
+
+#Placeholder for selector to identfy correct pod
+#selector :
+
+#Placeholder for container name
+container-name :
+
+#Placeholder for docker image url 
+image-url :
+
+#Placeholder for image pull policy
+#image-pull-policy :
+
+#Placeholder for container port 
+container-port :
+
+#Placeholder for POD restart policy
+#restart-policy :
+
+#Placeholder for service port 
+#service-port :
+
+#Placeholder for host name to access the service from outside of the cluster.
+#ingress-host :
+
+
+
+#Token from docker login
+#https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+
+
+
+
+
+
+
+ 

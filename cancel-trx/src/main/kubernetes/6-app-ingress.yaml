@@ -1,0 +1,13 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: cancel-trx-ing
+spec:
+  rules:      
+    - host: cancel-trx.service.dna.hclets.com
+      http:
+        paths:
+        -  path: /
+           backend:
+             serviceName: cancel-trx-svc
+             servicePort: 80

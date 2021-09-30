@@ -1,0 +1,47 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cancel-trx-deployment
+  labels:
+    app: cancel-trx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cancel-trx
+  template:
+    metadata:
+      labels:
+        app: cancel-trx
+    spec:
+      containers:
+        - name: cancel-trx-container
+          image: platform2.hclets.com:9876/generated-apps/cancel-trx:v1.0.0
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              valueFrom:
+                configMapKeyRef:
+                  name: cancel-trx-configmap
+                  key: ENVIRONMENT
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: cancel-trx-configmap
+                  key: MYSQL_DB_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: cancel-trx-db-secrets
+                  key: MYSQL_USER
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: cancel-trx-db-secrets
+                  key: MYSQL_PASSWORD
+      restartPolicy: Always
+      imagePullSecrets:
+      - name: cancel-trx-registry-secrets

@@ -1,0 +1,45 @@
+# ===================================================================
+# Spring Boot configuration for the "test" profile.
+#
+# This configuration overrides the application.yml file.
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+# ===================================================================
+# Server
+# ===================================================================
+server:
+  port: 8080
+  context-path: /v2
+
+# ===================================================================
+# Logging
+# ===================================================================
+logging:
+  level:
+    root: info
+    com.hcl.springboot.canceltrx: debug
+
+# ===================================================================
+# springfox
+# ===================================================================
+springfox:
+  documentation:
+    swagger:
+      v2.path: /api-docs
+
+spring:
+  jackson:
+    date-format: com.hcl.springboot.canceltrx.api.config.format.RFC3339DateFormat
+    serialization:
+      write-dates-as-timestamps: false
+
+
+ 
+
+ 

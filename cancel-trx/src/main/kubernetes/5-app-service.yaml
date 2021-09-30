@@ -1,0 +1,10 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: cancel-trx-svc
+spec:
+  selector:
+    app: cancel-trx
+  ports:
+    - port: 80 # Default Port to listen from ingress.
+      targetPort: 8080 # Port to forward to inside the pod (image running pod )
